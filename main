@@ -1,0 +1,70 @@
+Customer                       	 Order                        		  Product
++ CustomerID (PK)               + OrderID (PK)               	 + ProductID (PK)
++ Name                                  + CustomerID (FK)             	+ OrderID (FK)
++ Email                       	        + OrderDate                  		 + ProductName
++ Phone                              + TotalAmount                		 + Price
+                                                             			 + Quantity
+Relationships:  
+Customer (1) → Order (M) → Product (M)
+
+
+•  Customer
+•	Attributes: CustomerID (PK), Name, Email, Phone
+•  Order
+•	Attributes: OrderID (PK), CustomerID (FK), OrderDate, TotalAmount
+•  Product
+•	Attributes: ProductID (PK), OrderID (FK), ProductName, Price, Quantity
+
+
+1.	1NF: No repeating groups, each cell contains atomic values.
+2.	2NF: All non-key attributes depend on the entire primary key.
+3.	3NF: Attributes do not depend on other non-key attributes.
+Final Normalized Tables:
+•	Customer Table
+o	CustomerID (PK), Name, Email, Phone.
+•	Order Table
+o	OrderID (PK), CustomerID (FK), OrderDate, TotalAmount.
+•	Product Table
+o	ProductID (PK), OrderID (FK), ProductName, Price, Quantity.
+
+
+
+ 
+1. Customer → Order (1:M)
+•	Dependency:
+o	Each Order depends on a Customer.
+o	Foreign key: CustomerID in the Order table references the primary key CustomerID in the Customer table.
+Functional Dependency:
+CustomerID→OrderID, OrderDate, TotalAmount\text{CustomerID} \rightarrow \text{OrderID, OrderDate, TotalAmount}CustomerID→OrderID, OrderDate, TotalAmount
+Explanation: The CustomerID determines which orders they have placed and their details.
+________________________________________
+2. Order → Product (1:M)
+•	Dependency:
+o	Each Product depends on an Order.
+o	Foreign key: OrderID in the Product table references the primary key OrderID in the Order table.
+Functional Dependency:
+OrderID→ProductID, ProductName, Price, Quantity\text{OrderID} \rightarrow \text{ProductID, ProductName, Price, Quantity}OrderID→ProductID, ProductName, Price, Quantity
+Explanation: The OrderID determines which products are included in that specific order.
+________________________________________
+Combined Dependencies
+From Customer to Product through Order:
+•	Functional Dependencies:
+CustomerID→OrderID\text{CustomerID} \rightarrow \text{OrderID}CustomerID→OrderID OrderID→ProductID\text{OrderID} \rightarrow \text{ProductID}OrderID→ProductID CustomerID→ProductID (transitively through OrderID)\text{CustomerID} \rightarrow \text{ProductID (transitively through OrderID)}CustomerID→ProductID (transitively through OrderID)
+Diagram of Dependencies
+1.	CustomerID → OrderID → ProductID
+2.	Dependencies cascade:
+o	Customer details determine orders.
+ 
+o	Orders determine the products.
+
+  
+Entities:
+- Customer: CustomerID (PK), Name, Email, Phone
+- Order: OrderID (PK), CustomerID (FK), OrderDate, TotalAmount
+- Product: ProductID (PK), OrderID (FK), ProductName, Price, Quantity
+
+Relationships:
+Customer (1) → Order (M)
+Order (1) → Product (M)
+
+
